@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="PSYC489K">
+
+<title>Assignment 2: Mediation Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="assignment_2_answers_files/libs/clipboard/clipboard.min.js"></script>
+<script src="assignment_2_answers_files/libs/quarto-html/quarto.js"></script>
+<script src="assignment_2_answers_files/libs/quarto-html/popper.min.js"></script>
+<script src="assignment_2_answers_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="assignment_2_answers_files/libs/quarto-html/anchor.min.js"></script>
+<link href="assignment_2_answers_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="assignment_2_answers_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="assignment_2_answers_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="assignment_2_answers_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="assignment_2_answers_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 2: Mediation Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>PSYC489K </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>This assignment is going to test your skills in mediation analysis. (Both simple and more complicated models.) The slides for both units and textbook are <strong>critical</strong> to your success here.</p>
+<p><strong>Disclaimer:</strong> Do not use techniques or code we didn’t learn in class (e.g., from an obscure package) and do not give me code written by ChatGPT. I know how it writes code. Email me a question or reach out to a classmate if anything is unclear or you need help.</p>
+<p>Write answers in this Quarto document as text and add code chunks using the <strong>insert</strong> tab above as needed. (See Assignment 1 for formatting guidelines/recommendations.)</p>
+</section>
+<section id="questions-32-pts-total" class="level1">
+<h1>Questions (32 pts total)</h1>
+<p>The data for this assignment come from a study on product weight and perceptions of quality. Specifically, this study investigated whether artificially weighting chocolate wrappers caused people to perceive the flavor as more intense, and thus, make them more likely to purchase it. This information is valuable to both businesses and consumers, as the former want to sell products and the latter want to avoid tricks that business can play to increase sales without increasing quality. The data we use are the original data from the study. The variables we will be looking at are:</p>
+<ul>
+<li><p><strong>flav_intense:</strong> Ratings of intensity/potency of flavor, high scores = more intense (Range: 1-7)</p></li>
+<li><p><strong>flav_eval:</strong> Ratings of flavor, higher scores = better evaluation (Range: 1-7)</p></li>
+<li><p><strong>packweight:</strong> Experimental manipulation, 1 = light packaging, 2 = heavy packaging</p></li>
+<li><p><strong>purchase:</strong> Willingness to pay where higher scores = greater willingness (Range: 0-10)</p></li>
+<li><p><strong>sex:</strong> A participant’s biological sex (56.12% female)</p></li>
+<li><p><strong>age:</strong> A participant’s age at the time of the study (Range: 17-36)</p></li>
+</ul>
+<section id="hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="hypotheses">Hypotheses</h2>
+<p>The authors hypothesized that package weight would predict likelihood to purchase the chocolate, but only first because it would increase intensity and enjoyment of flavor. They wanted to control for sex and age in all model equations. In other words, the variables fit the roles identified below:</p>
+<p><strong>Predictor (<em>X</em>):</strong> Package weight (packweight)</p>
+<p><strong>Mediator 1 (<em>M1</em>):</strong> Flavor intensity (flav_intense)</p>
+<p><strong>Mediator 2 (<em>M2</em>):</strong> Flavor evaluation (flav_eval)</p>
+<p><strong>Outcome (<em>Y</em>):</strong> Purchase likelihood (purchase)</p>
+<p><strong>Covariates:</strong> Age and sex</p>
+<p>We will be using <strong>bootstrapping</strong> for all analyses. Remember that if you use PROCESS, you only need to add contrast = 1 (raw difference) or contrast = 2 (difference in absolute values) to compare indirect effects.</p>
+</section>
+<section id="question-1-data-exploration-2-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-1-data-exploration-2-pts">Question 1: Data Exploration (2 pts)</h2>
+<p>Load the ggplot2 and jtools packages. Read the data in to an object called <strong>chocolate</strong> and summarize it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for plots</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co"># to modify plots</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>chocolate <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"chocolate.csv"</span>) <span class="co"># since this is in the same folder for me</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"G:/My Drive/FlashDrive/Teaching Materials/PSYC489K (MedMod)/process_V5.R"</span>) <span class="co"># this allows PROCESS to render without needing to open it and run it yourself. MAKE SURE THE FILE PATH ROUTES TO WHERE IT IS ON YOUR COMPUTER OR JUPYTER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+ 
+PROCESS is now ready for use.
+Copyright 2013-2025 by Andrew F. Hayes ALL RIGHTS RESERVED
+Workshop schedule at haskayne.ucalgary.ca/CCRAM 
+Information about PROCESS available at processmacro.org/faq.html </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize the data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(chocolate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   packweight     flav_intense     flav_eval        purchase     
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   : 0.000  
+ 1st Qu.:1.000   1st Qu.:4.000   1st Qu.:3.000   1st Qu.: 0.800  
+ Median :1.000   Median :5.000   Median :4.667   Median : 1.950  
+ Mean   :1.453   Mean   :4.626   Mean   :4.442   Mean   : 2.569  
+ 3rd Qu.:2.000   3rd Qu.:6.000   3rd Qu.:5.667   3rd Qu.: 3.970  
+ Max.   :2.000   Max.   :7.000   Max.   :7.000   Max.   :10.000  
+      sex             age       
+ Min.   :1.000   Min.   :17.00  
+ 1st Qu.:1.000   1st Qu.:21.00  
+ Median :2.000   Median :23.00  
+ Mean   :1.561   Mean   :22.96  
+ 3rd Qu.:2.000   3rd Qu.:24.00  
+ Max.   :2.000   Max.   :36.00  </code></pre>
+</div>
+</div>
+</section>
+<section id="question-2-two-simple-mediation-models-8-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-2-two-simple-mediation-models-8-pts">Question 2: Two Simple Mediation Models (8 pts)</h2>
+<p>We’re going to start by fitting two simple mediation models to the data: one with flavor intensity as the mediator and one with flavor evaluation as a mediator. <strong>Remember to control for sex and age and compare the indirect effects if it is possible.</strong> Please follow this framework:</p>
+<section id="model-equations-can-be-for-both-models-dont-need-error-term" class="level3">
+<h3 class="anchored" data-anchor-id="model-equations-can-be-for-both-models-dont-need-error-term">Model Equations (can be for both models,, don’t need error term)</h3>
+<p>M_intense = d_intense + a*X</p>
+<p>Y = d_y + <em>c’</em>X + <em>b</em>*M_intense</p>
+<p>M_eval = d_eval + <em>a</em>*X</p>
+<p>Y = d_y + <em>c’</em>X + <em>b</em>*M_eval</p>
+</section>
+<section id="fit-the-models-can-be-both-in-same-chunk" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-models-can-be-both-in-same-chunk">Fit the models (can be both in same chunk)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Doing in manually </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the bootstrap parameters</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">489</span>) <span class="co"># set seed to reproduce my results</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="dv">5000</span> <span class="co"># number of bootstrap resamples</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(chocolate) <span class="co"># sample size </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ie_eval <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, B) <span class="co"># empty vector for first indirect effect</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ie_intense <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># empty vector for second indirect effect</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># start bootstrapping</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a> boot_dat <span class="ot">&lt;-</span> chocolate[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">TRUE</span>),] <span class="co"># resample from the OG dataset</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a> <span class="co"># flav_eval model</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a> a_e <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_eval<span class="sc">~</span>packweight <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">2</span>] <span class="co"># a path with bootstrap data</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a> b_e <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(purchase <span class="sc">~</span> packweight <span class="sc">+</span> flav_eval <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">3</span>] <span class="co"># b path with bootstrap data</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a> ie_eval[i] <span class="ot">&lt;-</span> a_e<span class="sc">*</span>b_e <span class="co"># indirect effect through evaluation</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a> <span class="co"># flav_intensity model</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a> a_i <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_intense<span class="sc">~</span>packweight <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">2</span>] <span class="co"># a path with bootstrap data</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a> b_i <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(purchase <span class="sc">~</span> packweight <span class="sc">+</span> flav_intense <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">3</span>] <span class="co"># b path with bootstrap data</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a> ie_intense[i] <span class="ot">&lt;-</span> a_i<span class="sc">*</span>b_i <span class="co"># indirect effect through intensity</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ci through eval</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_eval, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+0.05523046 0.53649147 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ci through intensity</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_intense, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     2.5%     97.5% 
+0.1335472 0.6776184 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Doing the above through PROCESS</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># through eval</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data=</span>chocolate, <span class="at">y =</span> <span class="st">"purchase"</span>, <span class="at">m =</span> <span class="st">"flav_eval"</span>, <span class="at">x =</span> <span class="st">"packweight"</span>, <span class="at">cov=</span><span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"age"</span>),<span class="at">model =</span> <span class="dv">4</span>, <span class="at">seed =</span> <span class="dv">489</span>, <span class="at">progress =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                   
+  Model: 4         
+      Y: purchase  
+      X: packweight
+      M: flav_eval 
+
+Covariates: 
+       sex age
+
+Sample size: 139
+
+Custom seed: 489
+
+
+*********************************************************************** 
+Outcome Variable: flav_eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.2603    0.0677    2.3351    3.2700    3.0000  135.0000    0.0233
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant      5.8819    1.2966    4.5363    0.0000    3.3176    8.4463
+packweight    0.6529    0.2612    2.4999    0.0136    0.1364    1.1693
+sex          -0.3032    0.2692   -1.1262    0.2621   -0.8357    0.2293
+age          -0.0834    0.0467   -1.7845    0.0766   -0.1759    0.0090
+
+*********************************************************************** 
+Outcome Variable: purchase
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.3939    0.1551    4.4239    6.1508    4.0000  134.0000    0.0001
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant     -4.5057    1.9159   -2.3517    0.0201   -8.2950   -0.7163
+packweight   -0.2149    0.3677   -0.5845    0.5599   -0.9421    0.5123
+flav_eval     0.4150    0.1185    3.5029    0.0006    0.1807    0.6493
+sex           1.3618    0.3723    3.6578    0.0004    0.6255    2.0982
+age           0.1489    0.0651    2.2870    0.0238    0.0201    0.2776
+
+*********************************************************************** 
+Bootstrapping in progress. Please wait.
+
+**************** DIRECT AND INDIRECT EFFECTS OF X ON Y ****************
+
+Direct effect of X on Y:
+     effect        se         t         p      LLCI      ULCI
+    -0.2149    0.3677   -0.5845    0.5599   -0.9421    0.5123
+
+Indirect effect(s) of X on Y:
+             Effect    BootSE  BootLLCI  BootULCI
+flav_eval    0.2709    0.1233    0.0559    0.5380
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+Number of bootstraps for percentile bootstrap confidence intervals: 5000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># through intensity</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data=</span>chocolate, <span class="at">y =</span> <span class="st">"purchase"</span>, <span class="at">m =</span> <span class="st">"flav_intense"</span>, <span class="at">x =</span> <span class="st">"packweight"</span>, <span class="at">cov=</span><span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"age"</span>),<span class="at">model =</span> <span class="dv">4</span>, <span class="at">seed =</span> <span class="dv">489</span>, <span class="at">progress =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                     
+  Model: 4           
+      Y: purchase    
+      X: packweight  
+      M: flav_intense
+
+Covariates: 
+       sex age
+
+Sample size: 139
+
+Custom seed: 489
+
+
+*********************************************************************** 
+Outcome Variable: flav_intense
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.2725    0.0742    1.7730    3.6087    3.0000  135.0000    0.0151
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant      3.5322    1.1298    3.1263    0.0022    1.2977    5.7666
+packweight    0.6963    0.2276    3.0597    0.0027    0.2462    1.1463
+sex           0.2009    0.2346    0.8563    0.3934   -0.2631    0.6648
+age          -0.0101    0.0407   -0.2478    0.8047   -0.0906    0.0705
+
+*********************************************************************** 
+Outcome Variable: purchase
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.4216    0.1777    4.3055    7.2416    4.0000  134.0000    0.0000
+
+Model: 
+                 coeff        se         t         p      LLCI      ULCI
+constant       -3.9772    1.8233   -2.1813    0.0309   -7.5833   -0.3711
+packweight     -0.3209    0.3667   -0.8752    0.3830   -1.0462    0.4043
+flav_intense    0.5414    0.1341    4.0366    0.0001    0.2761    0.8066
+sex             1.1273    0.3666    3.0752    0.0026    0.4023    1.8523
+age             0.1197    0.0635    1.8858    0.0615   -0.0058    0.2453
+
+*********************************************************************** 
+Bootstrapping in progress. Please wait.
+
+**************** DIRECT AND INDIRECT EFFECTS OF X ON Y ****************
+
+Direct effect of X on Y:
+     effect        se         t         p      LLCI      ULCI
+    -0.3209    0.3667   -0.8752    0.3830   -1.0462    0.4043
+
+Indirect effect(s) of X on Y:
+                Effect    BootSE  BootLLCI  BootULCI
+flav_intense    0.3769    0.1381    0.1325    0.6739
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+Number of bootstraps for percentile bootstrap confidence intervals: 5000</code></pre>
+</div>
+</div>
+</section>
+<section id="model-results-write-up-can-be-for-both-models" class="level3">
+<h3 class="anchored" data-anchor-id="model-results-write-up-can-be-for-both-models">Model Results (Write-up can be for both models)</h3>
+<p>What is/is not significant, interpret important effects, can we say they’re different? Strengths/weaknesses?</p>
+<p><strong>For flavor evaluation</strong></p>
+<p>Overall, those who were in the heavier packaging condition were higher in their evaluations of flavor than those in the lighter packaging condition (<em>a</em> = 0.653, <em>t</em> = 2.500, <em>p</em> = .014). This increase in flavor evaluation led to an increase in willingness to purchase the product (<em>b</em> = 0.415, <em>t</em> = 3.503, <em>p</em> &lt; .001). Those in the heavy wrapper condition were 0.271 units higher in their willingness to purchase as a result of the positive effect on flavor evaluation, which had a resulting positive impact on willingness to purchase, (<em>ab</em> = 0.271, 95% percentile bootstrap CI = [0.056, 0.538]). After accounting for the mechanism above, the weight of the package did not have an effect on willingness to purchase, (<em>c’</em> = -0.215, <em>t</em> = 0.585, <em>p</em> = .560). (Note: Sex and age were included as a covariate in all model equations.)</p>
+<p><strong>For flavor intensity</strong></p>
+<p>Overall, those who were in the heavier package condition were higher in their perceived intensity of flavor than those in the lighter package condition (<em>a</em> = 0.696, <em>t</em> = 3.060, <em>p</em> = .002). This increase in flavor intensity went on to increase willingness to purchase (<em>b</em> = 0.541, <em>t</em> = 4.037, <em>p</em> &lt; .001). Those in the heavy wrapper condition were 0.377 units higher in their willingness to purchase as a result of the positive effect on flavor intensity, which had a resulting positive impact on willingness to purchase, (<em>ab</em> = 0.377, 95% percentile bootstrap CI = [0.133, 0.674]). After accounting for the mechanism above, the weight of the package did not have an effect on willingness to purchase (<em>c’</em> = -0.321, <em>t</em> = -0.876, <em>p</em> = .383). (Note: Sex and age were included as a covariate in all model equations.)</p>
+<p>What these models gain in simplicity, they lose in simplicity, It is very likely the perceptions of flavor and perceptions of intensity are higher correlated, if not causally related, and since these are separate models, this potential correlation is not accounted for. It is likely that a parallel or serial mediation model would be better.</p>
+</section>
+</section>
+<section id="question-3-parallel-mediation-model-8-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-3-parallel-mediation-model-8-pts">Question 3: Parallel Mediation Model (8 pts)</h2>
+<p>We’re going to fit a parallel multiple mediation model to the data where flavor intensity and flavor evaluation are mediators. Remember to control for sex and age and compare the indirect effects if it is possible. Please follow this framework:</p>
+<section id="model-equations-dont-need-error-term" class="level3">
+<h3 class="anchored" data-anchor-id="model-equations-dont-need-error-term">Model Equations (don’t need error term)</h3>
+<p>M1 = <em>d_m1</em> + <em>a1</em>X</p>
+<p>M2 = <em>d_m2</em> + <em>a2</em>X</p>
+<p>Y = <em>d_y</em> + <em>c’</em>X + <em>b1</em>M1 + <em>b2</em>M2</p>
+</section>
+<section id="fit-the-models" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-models">Fit the models</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Doing in manually </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the bootstrap parameters</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">489</span>) <span class="co"># set seed to reproduce my results</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="dv">5000</span> <span class="co"># number of bootstrap resamples</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(chocolate) <span class="co"># sample size </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ie_p_eval <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, B) <span class="co"># empty vector for first indirect effect</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ie_p_intense <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># empty vector for second indirect effect</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ie_contrast <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, B)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># start bootstrapping</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a> boot_dat <span class="ot">&lt;-</span> chocolate[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">TRUE</span>),] <span class="co"># resample from the OG dataset</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a> <span class="co"># flav_eval model</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a> a1ev <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_eval<span class="sc">~</span>packweight <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">2</span>] <span class="co"># a1 path with bootstrap data</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a> a2in <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_intense<span class="sc">~</span>packweight <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">2</span>] <span class="co"># a2 path with bootstrap data</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a> b1ev <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(purchase <span class="sc">~</span> packweight <span class="sc">+</span> flav_eval <span class="sc">+</span> flav_intense <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">3</span>] <span class="co"># b1 path with bootstrap data</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a> b2in <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(purchase <span class="sc">~</span> packweight <span class="sc">+</span> flav_eval <span class="sc">+</span> flav_intense <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="dv">4</span>] <span class="co"># b2 path with bootstrap data</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a> ie_p_eval[i] <span class="ot">&lt;-</span> a1ev<span class="sc">*</span>b1ev <span class="co"># indirect effect through evaluation</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a> ie_p_intense[i] <span class="ot">&lt;-</span> a2in<span class="sc">*</span>b2in <span class="co"># indirect effect through intensity</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a> ie_contrast[i] <span class="ot">&lt;-</span> a1ev<span class="sc">*</span>b1ev<span class="sc">-</span>a2in<span class="sc">*</span>b2in <span class="co"># indirect effect through eval minus intensity </span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ci through eval</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_p_eval, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+0.01391055 0.41677046 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ci through intensity</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_p_intense, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+0.09534967 0.57403212 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ci for contrast</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_contrast, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+-0.4366168  0.1785654 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Doing the above model through PROCESS</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># through eval and intensity</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data=</span>chocolate, <span class="at">y =</span> <span class="st">"purchase"</span>, <span class="at">m =</span> <span class="fu">c</span>(<span class="st">"flav_intense"</span>,<span class="st">"flav_eval"</span>), <span class="at">x =</span> <span class="st">"packweight"</span>, <span class="at">cov=</span><span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"age"</span>),<span class="at">model =</span> <span class="dv">4</span>, <span class="at">seed =</span> <span class="dv">489</span>, <span class="at">progress =</span> <span class="dv">0</span>, <span class="at">contrast =</span><span class="dv">1</span>,<span class="at">total=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                     
+  Model: 4           
+      Y: purchase    
+      X: packweight  
+     M1: flav_intense
+     M2: flav_eval   
+
+Covariates: 
+       sex age
+
+Sample size: 139
+
+Custom seed: 489
+
+
+*********************************************************************** 
+Outcome Variable: flav_intense
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.2725    0.0742    1.7730    3.6087    3.0000  135.0000    0.0151
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant      3.5322    1.1298    3.1263    0.0022    1.2977    5.7666
+packweight    0.6963    0.2276    3.0597    0.0027    0.2462    1.1463
+sex           0.2009    0.2346    0.8563    0.3934   -0.2631    0.6648
+age          -0.0101    0.0407   -0.2478    0.8047   -0.0906    0.0705
+
+*********************************************************************** 
+Outcome Variable: flav_eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.2603    0.0677    2.3351    3.2700    3.0000  135.0000    0.0233
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant      5.8819    1.2966    4.5363    0.0000    3.3176    8.4463
+packweight    0.6529    0.2612    2.4999    0.0136    0.1364    1.1693
+sex          -0.3032    0.2692   -1.1262    0.2621   -0.8357    0.2293
+age          -0.0834    0.0467   -1.7845    0.0766   -0.1759    0.0090
+
+*********************************************************************** 
+Outcome Variable: purchase
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.4613    0.2128    4.1532    7.1887    5.0000  133.0000    0.0000
+
+Model: 
+                 coeff        se         t         p      LLCI      ULCI
+constant       -5.3289    1.8750   -2.8421    0.0052   -9.0376   -1.6202
+packweight     -0.4382    0.3634   -1.2059    0.2300   -1.1569    0.2805
+flav_intense    0.4336    0.1390    3.1203    0.0022    0.1588    0.7085
+flav_eval       0.2945    0.1211    2.4320    0.0163    0.0550    0.5340
+sex             1.2382    0.3629    3.4119    0.0009    0.5204    1.9560
+age             0.1432    0.0631    2.2695    0.0248    0.0184    0.2680
+
+************************ TOTAL EFFECT MODEL *************************** 
+Outcome Variable: purchase
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.2789    0.0778    4.7933    3.7943    3.0000  135.0000    0.0119
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant     -2.0649    1.8577   -1.1115    0.2683   -5.7389    1.6091
+packweight    0.0560    0.3742    0.1497    0.8813   -0.6840    0.7960
+sex           1.2360    0.3857    3.2044    0.0017    0.4732    1.9989
+age           0.1143    0.0670    1.7061    0.0903   -0.0182    0.2467
+
+*********************************************************************** 
+Bootstrapping in progress. Please wait.
+
+************ TOTAL, DIRECT, AND INDIRECT EFFECTS OF X ON Y ************
+
+Total effect of X on Y:
+     effect        se         t         p      LLCI      ULCI
+     0.0560    0.3742    0.1497    0.8813   -0.6840    0.7960
+
+Direct effect of X on Y:
+     effect        se         t         p      LLCI      ULCI
+    -0.4382    0.3634   -1.2059    0.2300   -1.1569    0.2805
+
+Indirect effect(s) of X on Y:
+                Effect    BootSE  BootLLCI  BootULCI
+TOTAL           0.4942    0.1618    0.1942    0.8257
+flav_intense    0.3019    0.1211    0.0981    0.5676
+flav_eval       0.1923    0.1038    0.0135    0.4138
+(C1)            0.1097    0.1572   -0.1810    0.4509
+
+Specific indirect effect contrast definition(s):
+(C1)     flav_intense   minus    flav_eval
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+Number of bootstraps for percentile bootstrap confidence intervals: 5000</code></pre>
+</div>
+</div>
+</section>
+<section id="model-results-write-up" class="level3">
+<h3 class="anchored" data-anchor-id="model-results-write-up">Model Results (Write-up)</h3>
+<p>What is/is not significant, interpret important effects, can we say they’re different?</p>
+<p>Overall, those who were in the heavier package condition were 0.696 units higher in their perceived intensity of flavor than those in the lighter package condition (<em>a1</em> = 0.696, <em>t</em> = 3.060, <em>p</em> = .003). Additionally, those who were in the heavier package condition were 0.653 units higher in their evaluations of flavor than those in the lighter package condition (<em>a2</em> = 0.653, <em>t</em> = 2.500, <em>p</em> = .014). The increase in flavor intensity went on to increase increase willingness to purchase (<em>b1</em> = 0.434, <em>t</em> = 3.120, <em>p</em> = .002). The increase in flavor evaluation also increased one’s willingness to purchase after controlling for flavor intensity, (<em>b2</em> = 0.295, <em>t</em> = 2.432, <em>p</em> = .016). (Note: Sex and age were included as a covariate in all model equations.)</p>
+<p>After controlling for flavor evaluation, sex, and age, those in the heavy wrapper condition were 0.302 units higher in their willingness to purchase as a result of the positive effect on flavor intensity, which had a resulting positive impact on willingness to purchase. This effect was significant, (95% percentile bootstrap CI = [0.098, 0.568]). After controlling for flavor intensity, sex, and age, those in the heavy wrapper condition were 0.192 units higher in their willingness to purchase as a result of the positive effect on flavor evaluation, which had a resulting positive impact on willingness to purchase. This effect was significant, (95% percentile bootstrap CI = [0.014, 0.414]).</p>
+<p>The indirect effect through intensity was not significantly different than the effect through evaluation, difference = -0.110, 95% percentile bootstrap CI = [-0.451, 0.181]. We do not have evidence that one of these is more influential in affecting purchasing decisions than the other.</p>
+<p>After accounting for both mechanism sabove, the weight of the package did not have an effect on willingness to purchase (<em>c’</em> = -0.438., <em>t</em> = -1.206, <em>p</em> = .230).</p>
+<p>A strength of the model is that it likely better represents the real world. It is likely that something like package weight would affect multiple things (i.e., act through multiple mechanisms) to increase one’s willingness to purchase a product (assuming it does at all).</p>
+<p>A limitation is that it is unclear whether package weight acts through these in individually (like in a parallel model) or in sequence (like in a serial model). It’s also almost guaranteed this model is still too simple.</p>
+</section>
+</section>
+<section id="question-4-serial-mediation-model-8-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-4-serial-mediation-model-8-pts">Question 4: Serial Mediation Model (8 pts)</h2>
+<p>We’re going to fit a serial multiple mediator model, where the order is X -&gt; M1 -&gt; M2 -&gt; Y (i.e., packweight -&gt; flav_intense -&gt; flav_eval -&gt; purchase). Remember to control for sex and age and compare the indirect effects if it is possible. Please follow this framework:</p>
+<section id="model-equations-dont-need-error-term-1" class="level3">
+<h3 class="anchored" data-anchor-id="model-equations-dont-need-error-term-1">Model Equations (don’t need error term)</h3>
+<p>M1 = d_m1 + <em>a</em>*X</p>
+<p>M2 = d_m1 + <em>s1</em>*X + <em>s2</em>*M1</p>
+<p>Y = d_Y + <em>c’</em>X + <em>b1</em>*M1 + <em>b2</em>*M2</p>
+<p>The serial indirect effect we are looking for is a * s2 * b2.</p>
+</section>
+<section id="fit-the-models-1" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-models-1">Fit the models</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Doing in manually </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the bootstrap parameters</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">489</span>) <span class="co"># set seed to reproduce my results</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="dv">5000</span> <span class="co"># number of bootstrap resamples</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(chocolate) <span class="co"># sample size </span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ie_flavint <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># for ie through intensity</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ie_flaveval <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># for ie through eval</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>ie_s <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, B) <span class="co"># empty vector for first indirect effect</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>con_int_serial <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># contrast vector </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>con_eval_serial <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># contrast vector </span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>con_int_eval <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,B) <span class="co"># contrast vector </span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># start bootstrapping</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a> boot_dat <span class="ot">&lt;-</span> chocolate[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">TRUE</span>),] <span class="co"># resample from the OG dataset</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a> <span class="co"># flav_eval model</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a> a1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_intense<span class="sc">~</span>packweight <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="st">"packweight"</span>] <span class="co"># a1 path with bootstrap data</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a> a2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_eval <span class="sc">~</span> packweight <span class="sc">+</span> flav_intense <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="st">"packweight"</span>] <span class="co"># b1 path with bootstrap data</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a> s2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(flav_eval <span class="sc">~</span> packweight <span class="sc">+</span> flav_intense <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="st">"flav_intense"</span>] <span class="co"># b1 path with bootstrap data</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a> b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(purchase <span class="sc">~</span> packweight <span class="sc">+</span> flav_intense <span class="sc">+</span> flav_eval <span class="sc">+</span> sex  <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="st">"flav_intense"</span>]</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a> b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(purchase <span class="sc">~</span> packweight <span class="sc">+</span> flav_intense <span class="sc">+</span> flav_eval <span class="sc">+</span> sex <span class="sc">+</span> age, <span class="at">data =</span> boot_dat))[<span class="st">"flav_eval"</span>] <span class="co"># b2 path with bootstrap data</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a> ie_flavint[i] <span class="ot">&lt;-</span> a1<span class="sc">*</span>b1</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a> ie_s[i] <span class="ot">&lt;-</span> a1<span class="sc">*</span>s2<span class="sc">*</span>b2 <span class="co"># indirect effect through intensity, then evaluation</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a> ie_flaveval[i] <span class="ot">&lt;-</span> a2<span class="sc">*</span>b2</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a> con_int_serial[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(ie_flavint[i])<span class="sc">-</span><span class="fu">abs</span>(ie_s[i])</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a> con_eval_serial[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(ie_flaveval[i])<span class="sc">-</span><span class="fu">abs</span>(ie_s[i])</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a> con_int_eval[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(ie_flavint[i])<span class="sc">-</span><span class="fu">abs</span>(ie_flaveval[i])</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co"># serial ci through intensity then evaluation</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_s, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       2.5%       97.5% 
+0.007507786 0.176187896 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># serial ci through intensity only </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_flavint, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+0.09534967 0.57403212 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># serial ci through eval only</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ie_flaveval, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       2.5%       97.5% 
+-0.03274724  0.30776098 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># contrast of int and serial ie</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(con_int_serial, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+0.03048968 0.49236100 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># contrast of eval and serial ie</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(con_eval_serial, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+-0.1106799  0.2281698 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># contrast of int and eval ie</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(con_int_eval, <span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      2.5%      97.5% 
+-0.1034843  0.4904853 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Doing the above model through PROCESS</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># through intensity, then eval</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data=</span>chocolate, <span class="at">y =</span> <span class="st">"purchase"</span>, <span class="at">m =</span> <span class="fu">c</span>(<span class="st">"flav_intense"</span>,<span class="st">"flav_eval"</span>), <span class="at">x =</span> <span class="st">"packweight"</span>, <span class="at">cov=</span><span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"age"</span>), <span class="at">model =</span> <span class="dv">6</span>, <span class="at">seed =</span> <span class="dv">489</span>, <span class="at">progress =</span> <span class="dv">0</span>, <span class="at">contrast =</span><span class="dv">2</span>)                          </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                     
+  Model: 6           
+      Y: purchase    
+      X: packweight  
+     M1: flav_intense
+     M2: flav_eval   
+
+Covariates: 
+       sex age
+
+Sample size: 139
+
+Custom seed: 489
+
+
+*********************************************************************** 
+Outcome Variable: flav_intense
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.2725    0.0742    1.7730    3.6087    3.0000  135.0000    0.0151
+
+Model: 
+               coeff        se         t         p      LLCI      ULCI
+constant      3.5322    1.1298    3.1263    0.0022    1.2977    5.7666
+packweight    0.6963    0.2276    3.0597    0.0027    0.2462    1.1463
+sex           0.2009    0.2346    0.8563    0.3934   -0.2631    0.6648
+age          -0.0101    0.0407   -0.2478    0.8047   -0.0906    0.0705
+
+*********************************************************************** 
+Outcome Variable: flav_eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.4031    0.1625    2.1135    6.4987    4.0000  134.0000    0.0001
+
+Model: 
+                 coeff        se         t         p      LLCI      ULCI
+constant        4.5898    1.2774    3.5929    0.0005    2.0632    7.1163
+packweight      0.3981    0.2569    1.5496    0.1236   -0.1100    0.9063
+flav_intense    0.3658    0.0940    3.8931    0.0002    0.1800    0.5517
+sex            -0.3767    0.2568   -1.4667    0.1448   -0.8847    0.1313
+age            -0.0797    0.0445   -1.7923    0.0753   -0.1677    0.0083
+
+*********************************************************************** 
+Outcome Variable: purchase
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.4613    0.2128    4.1532    7.1887    5.0000  133.0000    0.0000
+
+Model: 
+                 coeff        se         t         p      LLCI      ULCI
+constant       -5.3289    1.8750   -2.8421    0.0052   -9.0376   -1.6202
+packweight     -0.4382    0.3634   -1.2059    0.2300   -1.1569    0.2805
+flav_intense    0.4336    0.1390    3.1203    0.0022    0.1588    0.7085
+flav_eval       0.2945    0.1211    2.4320    0.0163    0.0550    0.5340
+sex             1.2382    0.3629    3.4119    0.0009    0.5204    1.9560
+age             0.1432    0.0631    2.2695    0.0248    0.0184    0.2680
+
+*********************************************************************** 
+Bootstrapping in progress. Please wait.
+
+**************** DIRECT AND INDIRECT EFFECTS OF X ON Y ****************
+
+Direct effect of X on Y:
+     effect        se         t         p      LLCI      ULCI
+    -0.4382    0.3634   -1.2059    0.2300   -1.1569    0.2805
+
+Indirect effect(s) of X on Y:
+         Effect    BootSE  BootLLCI  BootULCI
+TOTAL    0.4942    0.1618    0.1942    0.8257
+Ind1     0.3019    0.1211    0.0981    0.5676
+Ind2     0.1173    0.0871   -0.0353    0.3096
+Ind3     0.0750    0.0447    0.0052    0.1795
+(C1)     0.1847    0.1509   -0.0968    0.4942
+(C2)     0.2269    0.1187    0.0367    0.4941
+(C3)     0.0422    0.0841   -0.1114    0.2303
+
+Specific indirect effect contrast definition(s):
+(C1)     Ind1   minus    Ind2
+(C2)     Ind1   minus    Ind3
+(C3)     Ind2   minus    Ind3
+
+Contrasts are differences between absolute values of indirect effects
+
+Indirect effect key:
+Ind1 packweight    -&gt;    flav_intense    -&gt;    purchase              
+Ind2 packweight    -&gt;    flav_eval    -&gt;    purchase              
+Ind3 packweight    -&gt;    flav_intense    -&gt;    flav_eval    -&gt;    purchase
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+Number of bootstraps for percentile bootstrap confidence intervals: 5000</code></pre>
+</div>
+</div>
+</section>
+<section id="model-results-write-up-1" class="level3">
+<h3 class="anchored" data-anchor-id="model-results-write-up-1">Model Results (Write-up)</h3>
+<p>What is/is not significant, interpret important effects, can we say they’re different?</p>
+<p>Overall, those who were in the heavier package condition were higher in their perceived intensity of flavor than those in the lighter package condition (<em>a1</em> = 0.696, <em>t</em> = 3.060, <em>p</em> = .002). This increase in flavor intensity went on to increase flavor evaluation, controlling for package weight, (<em>s2</em> = 0.366, <em>t</em> = 3.893, <em>p</em> &lt; .001). Those with more favorable flavor evaluations were not willing to purchase the product after controlling for flavor intensity and package weight, (<em>b2</em> = 0.295, <em>t</em> = 2.432, <em>p</em> =.016). Those in the heavy wrapper condition were 0.075 units higher in their willingness to purchase as a result of the positive effect on flavor intensity, which increased flavor evaluation, which increased willingness to purchase. This serial indirect effect was significant, (95% percentile bootstrap CI = [0.005, 0.180]). After accounting for the mechanisms above, the weight of the package did not have an effect on willingness to purchase (<em>c’</em> = -0.438., <em>t</em> = -1.206, <em>p</em> = .230). (Note: Sex and age were included as a covariate in all model equations.) The indirect effect through intensity alone is significantly larger than the serial indirect effect (difference = 0.227, 95% percentile bootstrap CI = [0.037, 0.494]). None of the other indirect effects were significant.</p>
+<p>The strength of this model is that it is the most complex we’ve run so far. It could make sense that flavor intensity would lead to an increase in flavor evaluation, and if a flavor was both more intense and well received, then someone would be more willing to purchase the product.</p>
+<p>A limitation is that the sequential ordering may not be appropriate. Intensity of flavor could mean a bad thing if it is not perceived as enjoyable. Thus, it may be that flavor intensity is acting through a different pathway than flavor evaluation.</p>
+</section>
+</section>
+<section id="question-5-model-selection-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-5-model-selection-6-pts">Question 5: Model Selection (6 pts)</h2>
+<p>NOT BASED ON THE SIGNIFICANCE OF THE RESULTS, but rather, on theoretical rationale/argument, which model do you think best captures reality and why? What would you recommendation be to a company that came to you asking if they should create heavier wrappers for their chocolate bars?</p>
+<p>I feel like the parallel mediation model is the best of the three we ran here. Although it seems reasonable that flavor intensity may impact flavor evaluation, I can also see the package weight affecting these channels individually. Perhaps a more intense flavor leads to a perception of <em>quality</em> instead. (As mentioned above, someone may not like the flavor, so a more intense flavor may actually decrease likelihood of purchasing depending on the person.)</p>
+</section>
+<section id="bonus-data-visualizationconceptual-diagram-of-chosen-model-3-pts" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-data-visualizationconceptual-diagram-of-chosen-model-3-pts">Bonus: Data Visualization/Conceptual Diagram of Chosen Model (3 pts)</h2>
+<p>Using the ggplot2 code below, visualize whatever paths are part of the indirect effect(s) from your chosen model. Copy/paste these plots onto a conceptual diagram for your hypotheses and fill in the paths with estimates (much like the examples from the past two synchronous sessions). This diagram can be turned in as a .pptx, .jpg, or another filetype on the bonus submission question.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a1 - should be a boxplot because it's a dichotomous variable</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>chocolate, <span class="fu">aes</span>(<span class="at">x=</span> <span class="fu">as.factor</span>(packweight), <span class="at">y =</span> flav_intense)) <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  jtools<span class="sc">::</span><span class="fu">theme_apa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_2_answers_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a2 - should be a boxplot because it's a dichotomous variable</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>chocolate, <span class="fu">aes</span>(<span class="at">x=</span> <span class="fu">as.factor</span>(packweight), <span class="at">y =</span> flav_eval)) <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  jtools<span class="sc">::</span><span class="fu">theme_apa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_2_answers_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b1</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>chocolate, <span class="fu">aes</span>(<span class="at">x=</span> flav_intense, <span class="at">y =</span> purchase)) <span class="sc">+</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  jtools<span class="sc">::</span><span class="fu">theme_apa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_2_answers_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b2</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>chocolate, <span class="fu">aes</span>(<span class="at">x=</span> flav_eval, <span class="at">y =</span> purchase)) <span class="sc">+</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  jtools<span class="sc">::</span><span class="fu">theme_apa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_2_answers_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The figure is in the assignment answers section of the modules page.</p>
+</section>
+</section>
+<section id="the-end" class="level1">
+<h1>The end</h1>
+<p>Render the document and upload the .html files to the ELMS portal. Thank you! :)</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
