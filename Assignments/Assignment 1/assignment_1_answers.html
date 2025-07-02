@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="PSYC489K">
+
+<title>Assignment 1: Linear Regression (Answers)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="assignment_1_answers_files/libs/clipboard/clipboard.min.js"></script>
+<script src="assignment_1_answers_files/libs/quarto-html/quarto.js"></script>
+<script src="assignment_1_answers_files/libs/quarto-html/popper.min.js"></script>
+<script src="assignment_1_answers_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="assignment_1_answers_files/libs/quarto-html/anchor.min.js"></script>
+<link href="assignment_1_answers_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="assignment_1_answers_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="assignment_1_answers_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="assignment_1_answers_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="assignment_1_answers_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 1: Linear Regression (Answers)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>PSYC489K </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>This assignment is going to test your skills in R and regression analysis. The review slides for both units are going to be <strong>extremely</strong> helpful to you while completing this assingment. Do not use techniques or code we didn’t learn in class (e.g., from an obscure package) and do not give me code written by ChatGPT. I know how it writes code. Email me a question or reach out to a classmate if anything is unclear or you need help.</p>
+<p>Write answers in this Quarto document as text and add code chunks using the <strong>insert</strong> tab above as needed. The assignment should look something like below:</p>
+<p><strong>Question 1 - Text from question 1. (MAKE THIS ONE OF THE HEADER STYLES SO IT’S EASIER TO READ.)</strong></p>
+<p>Code chunk, if applicable.</p>
+<p><em>Text answering question, if applicable.</em></p>
+<p><strong>Question 2 - Text from question 2. (MAKE THIS ONE OF THE HEADER STYLES SO IT’S EASIER TO READ.)</strong></p>
+<p>…. and so on.</p>
+</section>
+<section id="questions-30-pts-total" class="level1">
+<h1>Questions (30 pts total)</h1>
+<p>The data for this assignment come from a mixed-methods study on young adults’ perceptions of their parents’ sexual communication with them as a child (e.g., did they have “the talk”?). The data presented are a subset from the larger questionnaire given to participants, who were recruited by convenience sampling, came into a lab, completed a questionnaire, and then an interview. The variables in the dataset are as follows:</p>
+<ul>
+<li><p><strong>Age</strong>: Participant’s age (Range: 19-22)</p></li>
+<li><p><strong>Sex</strong>: Participant’s sex (55% female)</p></li>
+<li><p><strong>cesd_TOT</strong>: Depressive symptomatology (Center for Epidemiological Studies–Depression Scale, Range: 0-36). HIGHER scores = MORE depression symptoms</p></li>
+<li><p><strong>soc_sup_TOT</strong>: Self-reported social support (Range: 3.83-7). HIGHER scores = MORE social support</p></li>
+<li><p><strong>sex_anx_TOT</strong>: Self-reported sexual anxiety (Range: 10-23). HIGHER scores = LOWER anxiety</p></li>
+<li><p><strong>sex_att_TOT</strong>: Self-reported attitudes toward sexuality (Range: 4-37). HIGHER scores = MORE NEGATIVE attitudes</p></li>
+</ul>
+<section id="question-1-1-pt" class="level2">
+<h2 class="anchored" data-anchor-id="question-1-1-pt">Question 1 (1 pt)</h2>
+<p>Read the data in to an object called <strong>sexuality</strong> and summarize it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sexuality <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"sexuality_data.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># produces summary statistics</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sexuality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Age            Sex               cesd_TOT      sex_att_TOT  
+ Min.   :19.00   Length:20          Min.   : 0.00   Min.   : 4.0  
+ 1st Qu.:20.00   Class :character   1st Qu.: 8.25   1st Qu.:14.0  
+ Median :20.50   Mode  :character   Median :15.50   Median :18.5  
+ Mean   :20.55                      Mean   :16.40   Mean   :17.9  
+ 3rd Qu.:21.00                      3rd Qu.:23.50   3rd Qu.:21.5  
+ Max.   :22.00                      Max.   :36.00   Max.   :37.0  
+  sex_anx_TOT     soc_sup_TOT   
+ Min.   :10.00   Min.   :3.833  
+ 1st Qu.:14.75   1st Qu.:5.542  
+ Median :17.00   Median :6.042  
+ Mean   :16.65   Mean   :5.854  
+ 3rd Qu.:19.00   3rd Qu.:6.417  
+ Max.   :23.00   Max.   :7.000  </code></pre>
+</div>
+</div>
+</section>
+<section id="question-2---creatingoverwriting-a-column-2-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-2---creatingoverwriting-a-column-2-pts">Question 2 - Creating/overwriting a Column (2 pts)</h2>
+<p>Overwrite the existing Sex column by assigning it the current sex column as a factor. Verify that it worked using the is.factor() command.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sexuality<span class="sc">$</span>Sex <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sexuality<span class="sc">$</span>Sex) <span class="co"># The left hand side retrieves the Participant sex column and the right hand side overwrites it. </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.factor</span>(sexuality<span class="sc">$</span>Sex) <span class="co"># will produce TRUE if it's a factor. It is. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="question-3---assumption-checking-simple-linear-regression-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-3---assumption-checking-simple-linear-regression-6-pts">Question 3 - Assumption Checking (Simple Linear Regression; 6 pts)</h2>
+<p>We will be fitting a model where depression is the <strong>outcome</strong> and sexual anxiety is the <strong>predictor</strong>. Use this to answer all subquestions in Question 3.</p>
+<p>a.) Use the ggplot2 code below to create a scatterplot for the relationship between sexual anxiety and depression. (Hint: You may need to do something with ggplot2 and jtools for this code to run.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># You need to add this, or else it won't run</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co"># allows us to use the theme_apa() command. </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>sexuality, <span class="fu">aes</span>(<span class="at">x =</span> sex_anx_TOT, <span class="at">y =</span> cesd_TOT)) <span class="sc">+</span> <span class="co"># simply fill in the variable names to cmoplete this task</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> jtools<span class="sc">::</span><span class="fu">theme_apa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_1_answers_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>b.) Using the slides as a reference (if needed), create a histogram AND qqplot for the residuals of this model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>anx_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cesd_TOT<span class="sc">~</span>sex_anx_TOT, <span class="at">data =</span> sexuality) <span class="co"># create model object so we can pull the residuals</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(anx_model)) <span class="co"># looking for bell-shaped curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_1_answers_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(anx_model)); <span class="fu">qqline</span>(<span class="fu">resid</span>(anx_model)) <span class="co"># looking for a straight line</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_1_answers_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>c.) Using the two plots above, comment on the assumptions for simple linear regression discussed in lecture. Should we run the model?</p>
+<p><strong>Normality:</strong> Normality seems like an okay assumption. The qqplot shows a straight enough line and the histogram of the residuals is an approximate bell curve. It could be better, but it’s not violated enough to be of concern.</p>
+<p><strong>Linearity</strong>: Linearity seems like a reasonable assumption given the scatterplot since a straight line appears to be the best summary of the data’s trend.</p>
+<p><strong>Homoskedasticity</strong>: Seems like a reasonable assumption. The variance seems constant in X as Y changes (i.e., there’s no funnel shape).</p>
+<p>All three model assumptions seemed reasonable enough to proceed with the model.</p>
+</section>
+<section id="question-4---model-fitting-and-interpretation-simple-linear-regression-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-4---model-fitting-and-interpretation-simple-linear-regression-6-pts">Question 4 - Model Fitting and Interpretation (Simple Linear Regression; 6 pts)</h2>
+<p>a.) Write two-tailed null and alternative hypotheses for the effect of sexual anxiety. Use <strong>parameters</strong>, <u>not words or sample notation</u>.</p>
+<p>H0: B1 = 0 (where B1 represents the population effect of sexual anxiety)<br>
+H1: B1 != 0</p>
+<p>b.) Fit the model described above to the sexuality data. Interpret the coefficients for the intercept and predictor and report the coefficient for sex_anx_TOT <strong>in APA format</strong> (shown in the slides). Do you reject or fail-to-reject the null?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>anx_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cesd_TOT<span class="sc">~</span>sex_anx_TOT, <span class="at">data =</span>sexuality) <span class="co"># create model object so we can pull the residuals</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anx_model) <span class="co"># produces model estimates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cesd_TOT ~ sex_anx_TOT, data = sexuality)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-14.3828  -9.1928   0.8787   6.7002  16.3787 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  48.9059    10.6340   4.599 0.000223 ***
+sex_anx_TOT  -1.9523     0.6259  -3.119 0.005926 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9.462 on 18 degrees of freedom
+Multiple R-squared:  0.3509,    Adjusted R-squared:  0.3148 
+F-statistic: 9.729 on 1 and 18 DF,  p-value: 0.005926</code></pre>
+</div>
+</div>
+<p>People with no sexual anxiety are expected to have a depression score of 48.91. This effect is significant (b0 = 48.91, <em>t</em> = 4.599, <em>p</em> &lt; .001). People with more sexual anxiety reported more depressive symptoms. For each one-unit increase in sexual anxiety, depression decreased by 1.953 units (b1 = -1.953, <em>t</em> = -3.119, <em>p</em> = .006). We reject the null that the effect of sexual anxiety is zero.</p>
+</section>
+<section id="question-5---assumption-checking-multiple-linear-regression-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-5---assumption-checking-multiple-linear-regression-6-pts">Question 5 - Assumption Checking (Multiple Linear Regression; 6 pts)</h2>
+<p>We’re going to switch gears and consider a more plausible model. Please enter Age, Sex, sex_att_TOT, and soc_sup_TOT to the model (in addition to sex anxiety). Age and Sex will be treated as covariates. We actually don’t care whether these are significant, we just want to make sure our estimates aren’t impacted by them. We will only worry about reporting soc_sup_TOT, sex_anx_TOT, and sex_att_TOT.</p>
+<p>a.) Using the slides as a reference (if needed), check and comment on the assumptions for multiple regression. (Hint: There should be two assumptions checked.) Should we run the model?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mult_anx_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cesd_TOT<span class="sc">~</span>Age<span class="sc">+</span>Sex<span class="sc">+</span>sex_anx_TOT <span class="sc">+</span> sex_att_TOT<span class="sc">+</span> soc_sup_TOT, <span class="at">data =</span> sexuality) <span class="co"># multiple regression model with each of the predictors and covariates entered</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(mult_anx_model)) <span class="co"># histogram of model residuals, look for bell curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_1_answers_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(mult_anx_model)); <span class="fu">qqline</span>(<span class="fu">resid</span>(mult_anx_model)) <span class="co"># QQ plot of model residuals, look for bell curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_1_answers_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of residuals by fitted values to assess linearity </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">resid</span>(mult_anx_model), <span class="fu">predict</span>(mult_anx_model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment_1_answers_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The assumption of normality seems reasonable. The qqplot line is straight enough and the histogram of the residuals looks more bell-curve like than the simple linear regression model. Additionally, a plot of the residuals by the predicted values does not show any funnel/cone shape, suggesting that homogeneity of variance is a reasonable assumption.</p>
+</section>
+<section id="question-6---model-fitting-and-interpretation-multiple-linear-regression-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-6---model-fitting-and-interpretation-multiple-linear-regression-6-pts">Question 6 - Model Fitting and Interpretation (Multiple Linear Regression; 6 pts)</h2>
+<p>a.) Write two-tailed null and alternative hypotheses for each parameter that we are interested in. (There should be three since we have three predictors. Don’t worry about the intercept or covariates.)</p>
+<p>H0: B1 = 0 (where B1 represents the population effect of social support)<br>
+H1: B1 != 0</p>
+<p>H0: B2 = 0 (where B2 represents the population effect of sexual anxiety)<br>
+H1: B2 != 0</p>
+<p>H0: B3 = 0 (where B3 represents the population effect of sexual attitudes)<br>
+H1: B3 != 0</p>
+<p>b.) Fit the multiple regression model to the data and produce a summary of the results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mult_anx_model) <span class="co"># produces the model summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cesd_TOT ~ Age + Sex + sex_anx_TOT + sex_att_TOT + 
+    soc_sup_TOT, data = sexuality)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.3850  -5.6794  -0.4263   4.5082  17.6797 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  99.2528    57.5373   1.725   0.1065  
+Age          -0.6801     2.6542  -0.256   0.8015  
+SexMale      -3.9574     4.1481  -0.954   0.3562  
+sex_anx_TOT  -2.4035     0.8614  -2.790   0.0145 *
+sex_att_TOT  -0.7975     0.3211  -2.483   0.0263 *
+soc_sup_TOT  -2.1869     2.9646  -0.738   0.4729  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.613 on 14 degrees of freedom
+Multiple R-squared:  0.5817,    Adjusted R-squared:  0.4323 
+F-statistic: 3.893 on 5 and 14 DF,  p-value: 0.02019</code></pre>
+</div>
+</div>
+<p>c.) <strong>Interpret the coefficients</strong> for sex_anx_TOT and soc_sup_TOT. (Don’t worry about reporting significance just yet.)</p>
+<p>As social support increased by one unit, participant depression decreased by 2.187 units after controlling for participant age, sex, sexual attitudes and sexual anxiety.</p>
+<p>As sexual anxiety increased by one unit, participant depression <em>increased</em> by 2.404 units assuming participants were equal on age, sex, sexual attitudes, and social support. (The estimate is negative because lower values on the anxiety measure mean higher levels of anxiety.)</p>
+<p>As sexual attitudes became one unit more positive, one’s depressive symptoms <em>decreased</em> by 0.798 units controlling for age, sex, sexual anxiety, and social support.</p>
+<p>d.) <strong>CREATE CONFIDENCE INTERVALS</strong> for the model parameters. Are the effects for <strong>the three predictors above</strong> significant from these confidence intervals? Why or why not?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mult_anx_model) <span class="co"># generates confidence intervals for each parameters identified in the model object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 2.5 %      97.5 %
+(Intercept) -24.152410 222.6579910
+Age          -6.372830   5.0126607
+SexMale     -12.854106   4.9392680
+sex_anx_TOT  -4.251001  -0.5559636
+sex_att_TOT  -1.486300  -0.1087515
+soc_sup_TOT  -8.545297   4.1714835</code></pre>
+</div>
+</div>
+<p>Only the effects for sexual attitudes and anxiety were significant. We know this because they were the only two confidence intervals that excluded zero. We fail-to-reject the null for the effect of social support.</p>
+</section>
+<section id="question-7---overall-conclusions-3-pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-7---overall-conclusions-3-pts">Question 7 - Overall Conclusions (3 pts)</h2>
+<p>What can we say about perceptions about sexuality and mental well-being given this study? Are there any concerns we should have about statistical conclusion validity?</p>
+<p>Based on this investigation, it seems like sexual communication with children is important, because it can impact children’s comfort levels with and anxiety about sexuality, which can have deleterious effects on your mental health. This effect transcends any buffering effects from social support.</p>
+</section>
+</section>
+<section id="the-end" class="level1">
+<h1>The end</h1>
+<p>Render the document and upload the .html files to the ELMS portal. Thank you! :)</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
