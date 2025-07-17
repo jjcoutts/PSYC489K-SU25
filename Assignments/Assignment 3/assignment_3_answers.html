@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="PSYC489K">
+
+<title>Assignment 3: Moderation Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="assignment_3_answers_files/libs/clipboard/clipboard.min.js"></script>
+<script src="assignment_3_answers_files/libs/quarto-html/quarto.js"></script>
+<script src="assignment_3_answers_files/libs/quarto-html/popper.min.js"></script>
+<script src="assignment_3_answers_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="assignment_3_answers_files/libs/quarto-html/anchor.min.js"></script>
+<link href="assignment_3_answers_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="assignment_3_answers_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="assignment_3_answers_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="assignment_3_answers_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="assignment_3_answers_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 3: Moderation Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>PSYC489K </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>This assignment is going to test your skills in moderation analysis. (Both simple and more complicated models.) The slides for both units and textbook are <strong>critical</strong> to your success here.</p>
+<p><strong>Disclaimer:</strong> Do not use techniques or code we didn’t learn in class (e.g., from an obscure package) and do not give me code written by ChatGPT. I know how it writes code. Email me a question or reach out to a classmate if anything is unclear or you need help.</p>
+<p>Write answers in this Quarto document as text and add code chunks using the <strong>insert</strong> tab above as needed.</p>
+<p>Reminder: <strong>You can use PROCESS or hard code the answers to these problems, save for the one involving mean centering.</strong></p>
+</section>
+<section id="questions-30pts-total" class="level1">
+<h1>Questions (30pts total)</h1>
+<p>The data for this assignment come from a study on women’s perceptions of a woman’s response to experiencing workplace discrimination. Specifically, this study was an experiment with two conditions: one where participants were told a lawyer protested being passed over for a promotion due to discrimination and one where they were told she did not protest this discrimination. They then measured participants on a variety of constructs including the perceived pervasiveness of sexism in society. This information is valuable to understanding things like victim blaming and our general perceptions of others’ behavior. The data we use are simulated to reproduce the results in the original study. The variables we will be looking at are:</p>
+<ul>
+<li><p><strong>protest:</strong> Experimental condition (1 = protest, 0 = no protest; 51.19% in the protest condition)</p></li>
+<li><p><strong>angry</strong>: Feelings of anger directed toward the lawyer, higher scores = more anger (Range: 1-7)</p></li>
+<li><p><strong>eval</strong>: Evaluation of how much they like the lawyer, higher scores = more positive evaluation (Range: 1-7)</p></li>
+<li><p><strong>approp</strong>: A measure of their perception of the appropriateness of the lawyer’s response (Range: 1.5-6.75)</p></li>
+<li><p><strong>sexsim</strong>: Participant’s ratings of how pervasive they believe sexism is in society (Range: 3.5-7)</p></li>
+</ul>
+<section id="hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="hypotheses">Hypotheses</h2>
+<p>The authors hypothesized that those in the protest condition would evaluate the lawyer more favorably. They also hypothesized that perceived pervasiveness of sexism and perceived appropriateness of her response would moderate the relationship. In other words, the variables fit the roles identified below:</p>
+<p>Predictor (<em>X</em>): Protest condition (protest)</p>
+<p>Moderator 1 (<em>W1</em>): Sexism (sexism)</p>
+<p>Moderator 2 (<em>W2</em>): Perceived appropriateness of response (approp)</p>
+<p>Outcome (<em>Y</em>): Evaluation of lawyer (eval)</p>
+</section>
+<section id="question-1-data-exploration-2pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-1-data-exploration-2pts">Question 1: Data Exploration (2pts)</h2>
+<p>Load the ggplot2 and jtools packages. Read the data in to an object called <strong>lawyer</strong> and summarize it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"~/PSYC489K-SU25/process_v5.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+ 
+PROCESS is now ready for use.
+Copyright 2013-2025 by Andrew F. Hayes ALL RIGHTS RESERVED
+Workshop schedule at haskayne.ucalgary.ca/CCRAM 
+Information about PROCESS available at processmacro.org/faq.html </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the lawyer data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lawyer <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/PSYC489K-SU25/Assignments/Assignment 3/lawyer.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lawyer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    protest           angry            eval           approp     
+ Min.   :0.0000   Min.   :1.000   Min.   :1.000   Min.   :1.500  
+ 1st Qu.:0.0000   1st Qu.:1.000   1st Qu.:5.000   1st Qu.:3.500  
+ Median :1.0000   Median :1.000   Median :5.745   Median :5.000  
+ Mean   :0.5119   Mean   :2.298   Mean   :5.574   Mean   :4.530  
+ 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:6.330   3rd Qu.:5.562  
+ Max.   :1.0000   Max.   :7.000   Max.   :7.000   Max.   :6.750  
+     sexism    
+ Min.   :3.50  
+ 1st Qu.:4.62  
+ Median :5.12  
+ Mean   :5.16  
+ 3rd Qu.:5.75  
+ Max.   :7.00  </code></pre>
+</div>
+</div>
+</section>
+<section id="question-2-data-preparation-6pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-2-data-preparation-6pts">Question 2: Data Preparation (6pts)</h2>
+<p>Recall that centering variables can improve the interpretation of the lower-order effects in a moderation model. You are to add <strong>two variables to the lawyer data frame. Name them sexism_c and approp_c</strong> and make these the mean-centered versions of <strong>sexism</strong> and <strong>approp</strong>, respectively<strong>.</strong> Although PROCESS can do this automatically with center = 1, I want you to have more practice manipulating data frames in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lawyer<span class="sc">$</span>sexism_c <span class="ot">&lt;-</span> lawyer<span class="sc">$</span>sexism <span class="sc">-</span> <span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lawyer<span class="sc">$</span>approp_c <span class="ot">&lt;-</span> lawyer<span class="sc">$</span>approp <span class="sc">-</span> <span class="fu">mean</span>(lawyer<span class="sc">$</span>approp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-3-model-equations-and-fitting-6pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-3-model-equations-and-fitting-6pts">Question 3: Model Equations and Fitting (6pts)</h2>
+<p>Write out the equation for a model where sexism_c is the only moderator and protest and eval are the predictor and outcome, respectively. Then for a model where only sexism (uncentered) is the moderator.</p>
+<section id="model-equations-dont-need-error-term" class="level3">
+<h3 class="anchored" data-anchor-id="model-equations-dont-need-error-term">Model Equations (don’t need error term)</h3>
+<p>Y = b0 + b1*protest + b2*sexism_c + b3*protest*sexism_c</p>
+<p>Y = b0 + b1*protest + b2*sexism + b3*protest*sexism</p>
+</section>
+<section id="fit-the-models" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-models">Fit the models</h3>
+<p>Fit the moderation model with sexism centered and without it centered. What changes in the interpretation of these models? (Interpret <strong>all coefficients</strong>, intercepts included.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manually </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cent_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(eval <span class="sc">~</span> protest<span class="sc">*</span>sexism_c, <span class="at">data =</span> lawyer); <span class="fu">summary</span>(cent_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = eval ~ protest * sexism_c, data = lawyer)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9894 -0.7018  0.1011  0.7026  2.3650 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        5.2682     0.1632  32.274  &lt; 2e-16 ***
+protest            0.5215     0.2281   2.286  0.02488 *  
+sexism_c          -0.4725     0.2140  -2.208  0.03008 *  
+protest:sexism_c   0.9012     0.2997   3.007  0.00352 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.038 on 80 degrees of freedom
+Multiple R-squared:  0.151, Adjusted R-squared:  0.1192 
+F-statistic: 4.745 on 3 and 80 DF,  p-value: 0.004262</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>uncent_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(eval <span class="sc">~</span> protest<span class="sc">*</span>sexism, <span class="at">data =</span> lawyer); <span class="fu">summary</span>(uncent_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = eval ~ protest * sexism, data = lawyer)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9894 -0.7018  0.1011  0.7026  2.3650 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      7.7062     1.0970   7.025 6.36e-10 ***
+protest         -4.1288     1.5619  -2.643  0.00987 ** 
+sexism          -0.4725     0.2140  -2.208  0.03008 *  
+protest:sexism   0.9012     0.2997   3.007  0.00352 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.038 on 80 degrees of freedom
+Multiple R-squared:  0.151, Adjusted R-squared:  0.1192 
+F-statistic: 4.745 on 3 and 80 DF,  p-value: 0.004262</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in process </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># uncentered</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data =</span> lawyer, <span class="at">x =</span> <span class="st">"protest"</span>, <span class="at">w =</span> <span class="st">"sexism_c"</span>, <span class="at">y =</span> <span class="st">"eval"</span>, <span class="at">model =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                 
+  Model: 1       
+      Y: eval    
+      X: protest 
+      W: sexism_c
+
+Sample size: 84
+
+
+*********************************************************************** 
+Outcome Variable: eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.3886    0.1510    1.0776    4.7445    3.0000   80.0000    0.0043
+
+Model: 
+             coeff        se         t         p      LLCI      ULCI
+constant    5.2682    0.1632   32.2739    0.0000    4.9434    5.5931
+protest     0.5215    0.2281    2.2863    0.0249    0.0676    0.9754
+sexism_c   -0.4725    0.2140   -2.2083    0.0301   -0.8983   -0.0467
+int_1       0.9012    0.2997    3.0074    0.0035    0.3049    1.4976
+
+Product terms key:
+int_1  :  protest  x  sexism_c      
+
+Test(s) of highest order unconditional interaction(s):
+      R2-chng         F       df1       df2         p
+X*W    0.0960    9.0444    1.0000   80.0000    0.0035
+----------
+Focal predictor: protest (X)
+      Moderator: sexism_c (W)
+
+Conditional effects of the focal predictor at values of the moderator(s):
+   sexism_c    effect        se         t         p      LLCI      ULCI
+    -0.8379   -0.2337    0.3384   -0.6905    0.4919   -0.9071    0.4397
+    -0.0399    0.4855    0.2283    2.1263    0.0366    0.0311    0.9399
+     0.7621    1.2083    0.3236    3.7343    0.0004    0.5644    1.8522
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+W values in conditional tables are the 16th, 50th, and 84th percentiles.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># centered</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data =</span> lawyer, <span class="at">x =</span> <span class="st">"protest"</span>, <span class="at">w =</span> <span class="st">"sexism"</span>, <span class="at">y =</span> <span class="st">"eval"</span>, <span class="at">model =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                
+  Model: 1      
+      Y: eval   
+      X: protest
+      W: sexism 
+
+Sample size: 84
+
+
+*********************************************************************** 
+Outcome Variable: eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.3886    0.1510    1.0776    4.7445    3.0000   80.0000    0.0043
+
+Model: 
+             coeff        se         t         p      LLCI      ULCI
+constant    7.7062    1.0970    7.0246    0.0000    5.5231    9.8894
+protest    -4.1288    1.5619   -2.6435    0.0099   -7.2370   -1.0205
+sexism     -0.4725    0.2140   -2.2083    0.0301   -0.8983   -0.0467
+int_1       0.9012    0.2997    3.0074    0.0035    0.3049    1.4976
+
+Product terms key:
+int_1  :  protest  x  sexism      
+
+Test(s) of highest order unconditional interaction(s):
+      R2-chng         F       df1       df2         p
+X*W    0.0960    9.0444    1.0000   80.0000    0.0035
+----------
+Focal predictor: protest (X)
+      Moderator: sexism (W)
+
+Conditional effects of the focal predictor at values of the moderator(s):
+     sexism    effect        se         t         p      LLCI      ULCI
+     4.3220   -0.2337    0.3384   -0.6905    0.4919   -0.9071    0.4397
+     5.1200    0.4855    0.2283    2.1263    0.0366    0.0311    0.9399
+     5.9220    1.2083    0.3236    3.7343    0.0004    0.5644    1.8522
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+W values in conditional tables are the 16th, 50th, and 84th percentiles.</code></pre>
+</div>
+</div>
+<p>The only thing that changes in these models is b0 and b1, which are interpreted as the expected value of Y when X = W = 0 and the expected change in Y with a one-unit increase in X when W (sexism) is 0. This is because the meaning of 0 for W changes when we center. Instead of being 0 on the raw scale, which is sometimes meaningless or impossible, mean-centering makes the W = 0 mean when sexism is <em>at the sample mean</em>. The interpretations of each coefficient are below:</p>
+<p><strong>Centered Model</strong></p>
+<p><strong>b0:</strong> People in the no protest condition (X = 0) at the sample mean of perceived sexism are expected to like the lawyer at a score of 5.268 units.</p>
+<p><strong>b1:</strong> Those in protest condition are expected to like the lawyer 0.52 units <em>more</em> than the no protest condition when perceived sexism is at the sample mean.</p>
+<p><strong>Uncentered Model</strong></p>
+<p><strong>b0:</strong> People in the no protest condition (X = 0) with a perceived sexism of 0 (an impossible value) are expected to like the lawyer at a score of 7.706 units.</p>
+<p><strong>b1:</strong> Those in protest condition are expected to like the lawyer 4.13 units <em>less</em> than the no protest condition when perceived sexism is 0 (which is an impossible value on the measurement scale).</p>
+<p><strong>Both Models</strong></p>
+<p><strong>b2:</strong> Liking is expected to decrease by 0.473 units when perceived pervasiveness of sexism increases by one-unit and someone is told the lawyer did not protest (because X = 0 = no protest condition).</p>
+<p><strong>b3:</strong> The protest condition is expected to be an additional 0.90 units <em>higher</em> in liking when perceived sexism increases by one-unit.</p>
+</section>
+<section id="model-results" class="level3">
+<h3 class="anchored" data-anchor-id="model-results">Model Results</h3>
+<p>Uncentered model: What is/is not significant, interpret effects.</p>
+<p>All effects are significant.</p>
+<p><em>b0</em> = 7.71, <em>t</em> = 7.03, <em>p</em> &lt; .001.</p>
+<p><em>b1</em> = -4.13, <em>t</em> = -2.64, <em>p</em> = .01.</p>
+<p><em>b2</em> = -0.47, <em>t</em> = -2.21, <em>p</em> = .03.</p>
+<p><em>b3</em> = 0.90, <em>t</em> = 3.01, <em>p</em> = .004.</p>
+<p>Centered model: What is/is not significant, interpret effects.</p>
+<p><em>b0</em> = 5.27, <em>t</em> = 32.27, <em>p</em> &lt; .001.</p>
+<p><em>b1</em> = 0.52, <em>t</em> = 2.29, <em>p</em> = .02.</p>
+<p><em>b2</em> = -0.47, <em>t</em> = -2.21, <em>p</em> = .03.</p>
+<p><em>b3</em> = 0.90, <em>t</em> = 3.01, <em>p</em> = .004.</p>
+</section>
+</section>
+<section id="question-4-probing-the-interaction---centered-model-only-8pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-4-probing-the-interaction---centered-model-only-8pts">Question 4: Probing the Interaction - Centered Model Only (8pts)</h2>
+<p>We’re going to probe the interaction only in the centered model using the Johnson-Neyman procedure and the simple slopes procedure. You may use PROCESS or do this manually.</p>
+<section id="simple-slopes-mean---one-sd" class="level3">
+<h3 class="anchored" data-anchor-id="simple-slopes-mean---one-sd">Simple Slopes (mean +/- one SD)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do significance tests at the mean +/- one standard deviation</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># manually </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>lawyer<span class="sc">$</span>sexism_l <span class="ot">=</span> lawyer<span class="sc">$</span>sexism <span class="sc">-</span> (<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism) <span class="sc">-</span> <span class="fu">sd</span>(lawyer<span class="sc">$</span>sexism))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>lawyer<span class="sc">$</span>sexism_h <span class="ot">&lt;-</span> lawyer<span class="sc">$</span>sexism <span class="sc">-</span> (<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism) <span class="sc">+</span> <span class="fu">sd</span>(lawyer<span class="sc">$</span>sexism))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>low_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(eval <span class="sc">~</span> protest<span class="sc">*</span>sexism_l, <span class="at">data =</span> lawyer); <span class="fu">summary</span>(low_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = eval ~ protest * sexism_l, data = lawyer)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9894 -0.7018  0.1011  0.7026  2.3650 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        5.6300     0.2174  25.901  &lt; 2e-16 ***
+protest           -0.1685     0.3227  -0.522  0.60296    
+sexism_l          -0.4725     0.2140  -2.208  0.03008 *  
+protest:sexism_l   0.9012     0.2997   3.007  0.00352 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.038 on 80 degrees of freedom
+Multiple R-squared:  0.151, Adjusted R-squared:  0.1192 
+F-statistic: 4.745 on 3 and 80 DF,  p-value: 0.004262</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>avg_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(eval <span class="sc">~</span> protest<span class="sc">*</span>sexism_c, <span class="at">data =</span> lawyer); <span class="fu">summary</span>(avg_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = eval ~ protest * sexism_c, data = lawyer)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9894 -0.7018  0.1011  0.7026  2.3650 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        5.2682     0.1632  32.274  &lt; 2e-16 ***
+protest            0.5215     0.2281   2.286  0.02488 *  
+sexism_c          -0.4725     0.2140  -2.208  0.03008 *  
+protest:sexism_c   0.9012     0.2997   3.007  0.00352 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.038 on 80 degrees of freedom
+Multiple R-squared:  0.151, Adjusted R-squared:  0.1192 
+F-statistic: 4.745 on 3 and 80 DF,  p-value: 0.004262</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>high_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(eval <span class="sc">~</span> protest<span class="sc">*</span>sexism_h, <span class="at">data =</span> lawyer); <span class="fu">summary</span>(high_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = eval ~ protest * sexism_h, data = lawyer)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9894 -0.7018  0.1011  0.7026  2.3650 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        4.9065     0.2444  20.079  &lt; 2e-16 ***
+protest            1.2115     0.3243   3.735  0.00035 ***
+sexism_h          -0.4725     0.2140  -2.208  0.03008 *  
+protest:sexism_h   0.9012     0.2997   3.007  0.00352 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.038 on 80 degrees of freedom
+Multiple R-squared:  0.151, Adjusted R-squared:  0.1192 
+F-statistic: 4.745 on 3 and 80 DF,  p-value: 0.004262</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in PROCESS</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data =</span> lawyer, <span class="at">x =</span> <span class="st">"protest"</span>, <span class="at">w =</span> <span class="st">"sexism_c"</span>, <span class="at">y =</span> <span class="st">"eval"</span>, <span class="at">model =</span> <span class="dv">1</span>, <span class="at">moments =</span> <span class="dv">1</span>, <span class="at">plot =</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                 
+  Model: 1       
+      Y: eval    
+      X: protest 
+      W: sexism_c
+
+Sample size: 84
+
+
+*********************************************************************** 
+Outcome Variable: eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.3886    0.1510    1.0776    4.7445    3.0000   80.0000    0.0043
+
+Model: 
+             coeff        se         t         p      LLCI      ULCI
+constant    5.2682    0.1632   32.2739    0.0000    4.9434    5.5931
+protest     0.5215    0.2281    2.2863    0.0249    0.0676    0.9754
+sexism_c   -0.4725    0.2140   -2.2083    0.0301   -0.8983   -0.0467
+int_1       0.9012    0.2997    3.0074    0.0035    0.3049    1.4976
+
+Product terms key:
+int_1  :  protest  x  sexism_c      
+
+Test(s) of highest order unconditional interaction(s):
+      R2-chng         F       df1       df2         p
+X*W    0.0960    9.0444    1.0000   80.0000    0.0035
+----------
+Focal predictor: protest (X)
+      Moderator: sexism_c (W)
+
+Conditional effects of the focal predictor at values of the moderator(s):
+   sexism_c    effect        se         t         p      LLCI      ULCI
+    -0.7656   -0.1685    0.3227   -0.5222    0.6030   -0.8108    0.4737
+     0.0000    0.5215    0.2281    2.2863    0.0249    0.0676    0.9754
+     0.7656    1.2115    0.3243    3.7354    0.0003    0.5661    1.8569
+
+Data for visualizing the conditional effect of the focal predictor:
+    protest  sexism_c      eval
+     0.0000   -0.7656    5.6300
+     1.0000   -0.7656    5.4615
+     0.0000    0.0000    5.2682
+     1.0000    0.0000    5.7897
+     0.0000    0.7656    4.9065
+     1.0000    0.7656    6.1179</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+W values in conditional tables are the mean and +/- SD from the mean.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a plot with the simple slopes</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="do">### visualizations and probing - simple slopes mean +/- 1 SD</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dv">3</span>) <span class="co"># predictor values for probing via simple slopes</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>y_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.63</span>,<span class="fl">5.4615</span>,<span class="fl">5.2682</span>,<span class="fl">5.7897</span>,<span class="fl">4.9065</span>,<span class="fl">6.1179</span>) <span class="co"># outcome values for probing via simple slopes</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>simp_slope_perform <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_values, <span class="at">w =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Low (-1SD)"</span>,<span class="st">"Low (-1SD)"</span>,<span class="st">"Medium (Mean)"</span>,<span class="st">"Medium (Mean)"</span>,<span class="st">"High (+1SD)"</span>,<span class="st">"High (+1SD)"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low (-1SD)"</span>,<span class="st">"Medium (Mean)"</span>,<span class="st">"High (+1SD)"</span>), <span class="at">ordered=</span><span class="cn">TRUE</span>), <span class="at">y =</span> y_values)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="do">### old simple slopes continuous moderator ggplot</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>simp_slope_perform) <span class="sc">+</span> <span class="co"># lets ggplot know the data frame we're working with</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y,<span class="at">color=</span>w)) <span class="sc">+</span> <span class="co"># create lines</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y =</span>y, <span class="at">color=</span>w)) <span class="sc">+</span> <span class="co"># add dots at end of lines</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="co"># this makes it neat and tidy</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="co"># start theme code, remove grid</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), <span class="co"># remove grid</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"black"</span>), <span class="co"># remove background</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span>.<span class="dv">5</span>), <span class="co"># center x axis title</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span>.<span class="dv">5</span>), <span class="co"># center y axis title</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(), <span class="co"># add axis lines</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"black"</span>)) <span class="sc">+</span> <span class="co"># end theme code</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Sexism"</span>)) <span class="sc">+</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#F8766D"</span>,<span class="st">"#00BA38"</span>,<span class="st">"#619CFF"</span>)) <span class="sc">+</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No Protest"</span>,<span class="st">"Protest"</span>)) <span class="sc">+</span> <span class="co"># change values on x-axis</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Condition"</span>,<span class="at">y=</span><span class="st">"Evaluation"</span>) <span class="co"># relabel axes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What can we say as a result of this investigation? Interpret the interaction.</p>
+<p>At high values of perceived sexism (-1 SD), the protest condition likes the lawyer 1.21 units <em>more</em> than the no protest condition. This effect is significant (<em>bL</em> = 1.21, <em>t</em> = 3.74, <em>p</em> &lt; .001.</p>
+<p>At average values of perceived sexism (mean), the protest condition likes the lawyer 0.52 units <em>more</em> than the no protest condition. This effect is significant (<em>bM</em> = 0.52, <em>t</em> = 2.29, <em>p</em> = .02.</p>
+<p>At low values of perceived sexism (+1 SD), the protest condition likes the lawyer 0.17 units <em>less</em> than the no protest condition. This effect is significant (<em>bH</em> = -0.17, <em>t</em> = -0.52, <em>p</em> = .60.</p>
+</section>
+<section id="johnson-neyman-no-plot" class="level3">
+<h3 class="anchored" data-anchor-id="johnson-neyman-no-plot">Johnson-Neyman (no plot)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do the JN technique</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># only doing this in PROCESS</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span>(<span class="at">data =</span> lawyer, <span class="at">x =</span> <span class="st">"protest"</span>, <span class="at">w =</span> <span class="st">"sexism_c"</span>, <span class="at">y =</span> <span class="st">"eval"</span>, <span class="at">jn =</span><span class="dv">1</span>, <span class="at">model =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                 
+  Model: 1       
+      Y: eval    
+      X: protest 
+      W: sexism_c
+
+Sample size: 84
+
+
+*********************************************************************** 
+Outcome Variable: eval
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.3886    0.1510    1.0776    4.7445    3.0000   80.0000    0.0043
+
+Model: 
+             coeff        se         t         p      LLCI      ULCI
+constant    5.2682    0.1632   32.2739    0.0000    4.9434    5.5931
+protest     0.5215    0.2281    2.2863    0.0249    0.0676    0.9754
+sexism_c   -0.4725    0.2140   -2.2083    0.0301   -0.8983   -0.0467
+int_1       0.9012    0.2997    3.0074    0.0035    0.3049    1.4976
+
+Product terms key:
+int_1  :  protest  x  sexism_c      
+
+Test(s) of highest order unconditional interaction(s):
+      R2-chng         F       df1       df2         p
+X*W    0.0960    9.0444    1.0000   80.0000    0.0035
+----------
+Focal predictor: protest (X)
+      Moderator: sexism_c (W)
+
+Conditional effects of the focal predictor at values of the moderator(s):
+   sexism_c    effect        se         t         p      LLCI      ULCI
+    -0.8379   -0.2337    0.3384   -0.6905    0.4919   -0.9071    0.4397
+    -0.0399    0.4855    0.2283    2.1263    0.0366    0.0311    0.9399
+     0.7621    1.2083    0.3236    3.7343    0.0004    0.5644    1.8522
+
+Moderator value(s) defining Johnson-Neyman significance region(s):
+      Value   % below   % above
+    -0.0729   47.6190   52.3810
+
+Conditional effect of focal predictor at values of the moderator:
+   sexism_c    effect        se         t         p      LLCI      ULCI
+    -1.6599   -0.9745    0.5462   -1.7841    0.0782   -2.0614    0.1125
+    -1.4849   -0.8167    0.4990   -1.6367    0.1056   -1.8098    0.1763
+    -1.3099   -0.6590    0.4530   -1.4548    0.1496   -1.5606    0.2425
+    -1.1349   -0.5013    0.4086   -1.2271    0.2234   -1.3144    0.3117
+    -0.9599   -0.3436    0.3662   -0.9383    0.3509   -1.0724    0.3852
+    -0.7849   -0.1859    0.3268   -0.5688    0.5711   -0.8363    0.4645
+    -0.6099   -0.0282    0.2916   -0.0966    0.9233   -0.6084    0.5521
+    -0.4349    0.1295    0.2621    0.4942    0.6225   -0.3921    0.6512
+    -0.2599    0.2873    0.2407    1.1937    0.2361   -0.1917    0.7662
+    -0.0849    0.4450    0.2294    1.9399    0.0559   -0.0115    0.9014
+    -0.0729    0.4558    0.2290    1.9901    0.0500    0.0000    0.9115
+     0.0901    0.6027    0.2298    2.6225    0.0104    0.1453    1.0600
+     0.2651    0.7604    0.2419    3.1435    0.0023    0.2790    1.2418
+     0.4401    0.9181    0.2640    3.4772    0.0008    0.3927    1.4436
+     0.6151    1.0758    0.2940    3.6597    0.0005    0.4908    1.6608
+     0.7901    1.2335    0.3296    3.7428    0.0003    0.5777    1.8894
+     0.9651    1.3913    0.3692    3.7681    0.0003    0.6565    2.1260
+     1.1401    1.5490    0.4117    3.7621    0.0003    0.7296    2.3684
+     1.3151    1.7067    0.4563    3.7401    0.0003    0.7986    2.6148
+     1.4901    1.8644    0.5024    3.7108    0.0004    0.8645    2.8643
+     1.6651    2.0221    0.5497    3.6788    0.0004    0.9282    3.1160
+     1.8401    2.1798    0.5978    3.6465    0.0005    0.9902    3.3695
+
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95
+
+W values in conditional tables are the 16th, 50th, and 84th percentiles.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do not create a plot for this </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What can we interpret as a result of this investigation? Write out the region of significance and what this means for the interaction.</p>
+<p>From the JN, we can see that the effect of protesting on being liked is significant starting at perceived mean centered sexism values of -0.073 (i.e., when they are just below average in how pervasive they believe sexism to be in society). After this value the effect of liking becomes significantly more positive. This means that people like the lawyer more when she protests the more of a problem they believe sexism to be. (This could potentially be a problematic line of thinking if it leads to them disliking her if they think it’s a big issue and she doesn’t protest.)</p>
+</section>
+</section>
+<section id="question-5-multiple-additive-moderation-8pts" class="level2">
+<h2 class="anchored" data-anchor-id="question-5-multiple-additive-moderation-8pts">Question 5: Multiple Additive Moderation (8pts)</h2>
+<p>Let’s try to expand the model. Let’s write out the equations and fit a model where sexism_c and approp_c are <strong>additive centered moderators.</strong></p>
+<section id="model-equations-dont-need-error-term-1" class="level3">
+<h3 class="anchored" data-anchor-id="model-equations-dont-need-error-term-1">Model Equations (don’t need error term)</h3>
+<p>Y = b0 + b1*protest + b2 * sexism_c + b3*protest*sexism_c + b4 * approp_c + b5*protest*approp_c</p>
+</section>
+<section id="fit-the-models-1" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-models-1">Fit the models</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(eval<span class="sc">~</span>protest<span class="sc">*</span>sexism_c <span class="sc">+</span> protest<span class="sc">*</span>approp_c, <span class="at">data =</span> lawyer))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = eval ~ protest * sexism_c + protest * approp_c, 
+    data = lawyer)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.8303 -0.6078  0.1564  0.5402  2.3280 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       5.47813    0.17119  32.001  &lt; 2e-16 ***
+protest           0.11725    0.24277   0.483  0.63049    
+sexism_c         -0.31219    0.20915  -1.493  0.13956    
+approp_c          0.30303    0.11014   2.751  0.00738 ** 
+protest:sexism_c  0.58991    0.29484   2.001  0.04890 *  
+protest:approp_c  0.03344    0.18416   0.182  0.85639    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9746 on 78 degrees of freedom
+Multiple R-squared:  0.2705,    Adjusted R-squared:  0.2237 
+F-statistic: 5.783 on 5 and 78 DF,  p-value: 0.0001361</code></pre>
+</div>
+</div>
+</section>
+<section id="model-results-write-up" class="level3">
+<h3 class="anchored" data-anchor-id="model-results-write-up">Model Results (Write-up)</h3>
+<p>What is/is not significant? Is this model worth running (why or why not)?</p>
+<p>Here, the intercept, conditional effect of centered appropriateness, and interaction between protest and sexism_c are all significant.</p>
+<p>It is unclear whether this model is worth running without knowing more about substantive theory. My suspicion is that it is not worth running, solely because I don’t expect perceived response appropriateness to moderate this relationship. I wouldn’t be surprised to find that how pervasive one believes sexism to be causes their perception of the response appropriateness, which would give us a model where sexism_c is a moderator and approp_c is a mediator.</p>
+<p>There is no need to probe/visualize this model. (It’s too much effort.)</p>
+</section>
+</section>
+<section id="bonus-comprehensive-visualization-of-simple-moderation-model-3pts" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-comprehensive-visualization-of-simple-moderation-model-3pts">Bonus: Comprehensive Visualization of Simple Moderation Model (3pts)</h2>
+<p>Using the ggplot2 code template below (and examples from past lectures), create a comprehensive visualization combining the simple slopes and Johnson-Neyman procedures. Save the image and upload it to the assignment submission portal on the bonus submission question. You should only need to plug in values as appropriate here. Don’t forget to change labels as appropriate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## new graph, combination of scatterplot, simple slopes, and J-N</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>simpmod <span class="ot">&lt;-</span> <span class="fu">lm</span>(eval<span class="sc">~</span>protest<span class="sc">*</span>sexism_c, <span class="at">data =</span> lawyer)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(simpmod)[<span class="dv">1</span>];b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(simpmod)[<span class="dv">2</span>];b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(simpmod)[<span class="dv">3</span>];b3 <span class="ot">&lt;-</span> <span class="fu">coef</span>(simpmod)[<span class="dv">4</span>]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>sintlow <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b2<span class="sc">*</span>(<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism_c)<span class="sc">-</span><span class="fu">sd</span>(lawyer<span class="sc">$</span>sexism_c));sslolow <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b3<span class="sc">*</span>(<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism_c)<span class="sc">-</span><span class="fu">sd</span>(lawyer<span class="sc">$</span>sexism_c))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>sintmed <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b2<span class="sc">*</span>(<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism_c));sslomed <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b3<span class="sc">*</span>(<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism_c))</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>sinthigh <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b2<span class="sc">*</span>(<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism_c)<span class="sc">+</span><span class="fu">sd</span>(lawyer<span class="sc">$</span>sexism_c));sslohigh <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b3<span class="sc">*</span>(<span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism_c)<span class="sc">+</span><span class="fu">sd</span>(lawyer<span class="sc">$</span>sexism_c))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>sintsig1 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b2<span class="sc">*</span>(<span class="sc">-</span><span class="fl">0.0729</span>);sslosig1 <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b3<span class="sc">*</span>(<span class="sc">-</span><span class="fl">0.0729</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>lawyer<span class="sc">$</span>modinROS <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(lawyer<span class="sc">$</span>sexism_c <span class="sc">&gt;=</span> <span class="sc">-</span><span class="fl">0.0729</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>lawyer<span class="sc">$</span>sexism_c <span class="ot">=</span> lawyer<span class="sc">$</span>sexism<span class="sc">-</span><span class="fu">mean</span>(lawyer<span class="sc">$</span>sexism)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># new visual with all the bells and whistles</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_boxplot(data=test, aes(y= eval,x= protest,color=as.factor(modinROS))) +</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>lawyer, <span class="fu">aes</span>(<span class="at">y =</span> eval, <span class="at">x =</span> protest, <span class="at">color =</span> <span class="fu">as.factor</span>(modinROS)), <span class="at">position=</span><span class="fu">position_jitterdodge</span>(<span class="at">dodge=</span><span class="fl">0.6</span>)) <span class="sc">+</span> <span class="co"># add points and color by factor</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">data=</span>lawyer, <span class="fu">aes</span>(<span class="at">y=</span> eval,<span class="at">x=</span> protest),<span class="at">outside=</span><span class="cn">TRUE</span>,<span class="at">sides=</span><span class="st">"tr"</span>, <span class="at">position=</span><span class="st">"jitter"</span>) <span class="sc">+</span> <span class="co"># allows for rug plot</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="co"># allows for rug plot</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span>sslolow,<span class="at">intercept=</span>sintlow,<span class="at">color=</span><span class="st">"#031D38"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># slope at low levels</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span>sslomed,<span class="at">intercept=</span>sintmed,<span class="at">color=</span><span class="st">"#346E9D"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># slope at medium levels</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span>sslohigh,<span class="at">intercept=</span>sinthigh,<span class="at">color=</span><span class="st">"#55AEF3"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># slope at high levels</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span>sslosig1,<span class="at">intercept=</span>sintsig1,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">linetype=</span><span class="st">"dotted"</span>, <span class="at">size =</span><span class="dv">1</span>) <span class="sc">+</span> <span class="co"># add region 1</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name=</span><span class="st">"Sexism (Centered) (W)"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Not in ROS"</span>,<span class="st">"ROS"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red2"</span>,<span class="st">"green4"</span>)) <span class="sc">+</span> </span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_x_continuous(expand = expansion(mult=.005)) +</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(expand = expansion(mult=.005)) + </span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="co"># remove grid</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), <span class="co"># remove grid</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"black"</span>), <span class="co"># remove background</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span>.<span class="dv">5</span>), <span class="co"># center x axis title</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span>.<span class="dv">5</span>), <span class="co"># center y axis title</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"black"</span>)) <span class="sc">+</span> <span class="co"># add axis lines, end theme adjustments</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No Protest"</span>,<span class="st">"Protest"</span>)) <span class="sc">+</span> <span class="co"># change values on x-axis</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Condition"</span>,<span class="at">y=</span><span class="st">"Evaluation"</span>) <span class="co"># relabel axes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+i Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="assignment_3_answers_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="the-end" class="level2">
+<h2 class="anchored" data-anchor-id="the-end">The end</h2>
+<p>Render the document and upload the .html files to the ELMS portal. Thank you! :)</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
